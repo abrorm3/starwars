@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Person } from 'src/app/shared/interfaces/person.model';
 import { SwapiService } from 'src/app/shared/swapi.service';
 
@@ -9,12 +10,22 @@ import { SwapiService } from 'src/app/shared/swapi.service';
 })
 export class PeopleComponent implements OnInit {
   people: Person[] = [];
+  currentPage: number=1;
 
-
-  constructor(private swapiService: SwapiService) {}
+  constructor(private swapiService: SwapiService, private route:ActivatedRoute) {}
 
   ngOnInit() {
-    this.swapiService.getPeople().subscribe({
+    this.getPageInfo();
+    this.fetchEntity();
+  }
+  getPageInfo(){
+    this.route.params.subscribe((params: Params) => {
+      this.currentPage = +params['page'] || 1;
+      console.log('Current Page:', this.currentPage);
+    });
+  }
+  fetchEntity(){
+    this.swapiService.getPeople(this.currentPage).subscribe({
       next: (data: any) => {
         this.people = data.results.map((person: Person, index: number) => ({
           ...person,

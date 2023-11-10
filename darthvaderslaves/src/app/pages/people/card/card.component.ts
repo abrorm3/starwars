@@ -1,21 +1,27 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { PeopleService } from '../people.service';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent {
+export class CardComponent implements OnInit{
   @Input() entity: any;
   @Input() entityType: string ='';
-film: any;
+  @Input() currPage:number=1;
 
-  constructor(private router:Router){}
+  constructor(private router:Router, private route:ActivatedRoute, private peopleService:PeopleService){}
+
+  ngOnInit(): void {
+
+  }
 
   getImagePath(): string {
-      console.log(`assets/${this.entityType}/${this.entity.id}.jpg`);
-      return `assets/${this.entityType}/${this.entity.id}.jpg`;
+    const adjustedEntityId = this.entity.id + (this.currPage - 1) * 10;
+      console.log(`assets/${this.entityType}/${adjustedEntityId}.jpg`);
+      return `assets/${this.entityType}/${adjustedEntityId}.jpg`;
   }
   navigateDetails(){
     this.router.navigate([`/character/${this.entity.id}`]);

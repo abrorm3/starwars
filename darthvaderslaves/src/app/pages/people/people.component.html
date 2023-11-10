@@ -7,6 +7,6 @@
 <div class="h-screen flex flex-wrap justify-center items-center">
   <mat-spinner *ngIf="people.length==0"></mat-spinner>
   <div *ngFor="let person of people">
-    <app-card [entity]="person" entityType="characters"></app-card>
+    <app-card [entity]="person" entityType="characters" [currPage]="currentPage"></app-card>
   </div>
 </div>

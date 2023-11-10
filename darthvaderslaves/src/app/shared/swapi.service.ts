@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Person } from './interfaces/person.model';
 
@@ -20,7 +20,8 @@ export class SwapiService {
 
   constructor(private http:HttpClient) { }
 
-  getPeople():Observable<Person> {
-    return this.http.get<Person>(`${this.apiUrl}/people`);
+  getPeople(pageNum:number):Observable<Person> {
+    const params = new HttpParams().set('page', pageNum);
+    return this.http.get<Person>(`${this.apiUrl}/people`,{params});
   }
 }

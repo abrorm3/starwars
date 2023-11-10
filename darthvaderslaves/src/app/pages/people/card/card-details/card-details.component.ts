@@ -23,6 +23,7 @@ export class CardDetailsComponent implements OnInit{
 
   }
   attachRouterId(){
+    // this.peopleService.getCurrentPage()
     this.route.params.subscribe(params => {
       this.id = params['id'];
       console.log(this.id);
