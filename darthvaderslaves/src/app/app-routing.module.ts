@@ -7,8 +7,8 @@ import { CardDetailsComponent } from './pages/people/card/card-details/card-deta
 const routes: Routes = [
   {path:'', redirectTo:'main',pathMatch: 'full'},
   {path:'main', component:MainComponent},
-  {path:'people', component:PeopleComponent},
-  {path:'people/:id', component:CardDetailsComponent}
+  {path:'characters', component:PeopleComponent},
+  {path:'character/:id', component:CardDetailsComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,4 +1,11 @@
-<div class="flex flex-wrap justify-center items-center">
+<div class="flex items-center space-x-4">
+  <a [routerLink]="['/main']" routerLinkActive="router-link-active" class="text-blue-500 hover:underline">Main</a>
+  <span class="text-gray-500 mx-4">/</span>
+  <p class="text-gray-700">Characters</p>
+
+</div>
+<div class="h-screen flex flex-wrap justify-center items-center">
+  <mat-spinner *ngIf="people.length==0"></mat-spinner>
   <div *ngFor="let person of people">
     <app-card [entity]="person" entityType="characters"></app-card>
   </div>

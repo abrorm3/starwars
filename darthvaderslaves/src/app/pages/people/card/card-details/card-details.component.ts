@@ -33,5 +33,19 @@ export class CardDetailsComponent implements OnInit{
   getImagePath(): string {
     return `assets/characters/${this.id}.jpg`;
   }
+  getEntityId(entityId: string): string {
+    const id = this.extractIdFromUrl(entityId);
+    return `${id}`;
+  }
+
+  getFilmImageUrl(filmUrl: string, entity:string): string {
+    const id = this.extractIdFromUrl(filmUrl);
+    return `assets/${entity}/${id}.jpg`;
+  }
+
+  private extractIdFromUrl(url: string): number {
+    const parts = url.split('/');
+    return +parts[parts.length - 2];
+  }
 }
 

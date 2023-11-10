@@ -1,40 +1,171 @@
+<div *ngIf="!character" class="h-screen flex flex-wrap justify-center items-center">
+  <mat-spinner ></mat-spinner>
+</div>
+<div id="details-bg" *ngIf="character">
+  <div class="flex items-center space-x-4">
+    <a
+      [routerLink]="['/main']"
+      routerLinkActive="router-link-active"
+      class="text-blue-500 hover:underline"
+      >Main</a
+    >
+    <span class="text-gray-500 mx-4">/</span>
+    <a [routerLink]="['/characters']" class="text-blue-500 hover:underline"
+      >Characters</a
+    >
+    <span class="text-gray-500 mx-4">/</span>
+    <p class="text-gray-700">{{ character.name }}</p>
+  </div>
 
-<div class="max-w-xs rounded overflow-hidden shadow-lg mx-4 my-6 bg-white">
-  <img class="w-full" [src]="getImagePath()" alt="Character Image">
-  <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2">{{ character.name }}</div>
-    <p><strong>Height:</strong> {{ character.height }}</p>
-    <p><strong>Mass:</strong> {{ character.mass }}</p>
-    <p><strong>Hair Color:</strong> {{ character.hair_color }}</p>
-    <p><strong>Skin Color:</strong> {{ character.skin_color }}</p>
-    <p><strong>Eye Color:</strong> {{ character.eye_color }}</p>
-    <p><strong>Birth Year:</strong> {{ character.birth_year }}</p>
-    <p><strong>Gender:</strong> {{ character.gender }}</p>
-    <p><strong>Homeworld:</strong> <a href="{{ character.homeworld }}" target="_blank">Homeworld</a></p>
+  <div class="flex justify-center items-center">
+    <div class="w-96 h-96 flex justify-center items-center" *ngIf="!character">
+      <mat-spinner class="spinner" *ngIf="!character"></mat-spinner>
+    </div>
+    <div
+      class="flex w-max rounded shadow-lg mx-4 my-6 bg-white justify-center items-center"
+      *ngIf="character"
+    >
+      <img class="w-76" [src]="getImagePath()" alt="Character Image" />
+      <div class="w-72">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ character.name }}</div>
+          <p><strong>Height:</strong> {{ character.height }}</p>
+          <p><strong>Mass:</strong> {{ character.mass }}</p>
+          <p><strong>Hair Color:</strong> {{ character.hair_color }}</p>
+          <p><strong>Skin Color:</strong> {{ character.skin_color }}</p>
+          <p><strong>Eye Color:</strong> {{ character.eye_color }}</p>
+          <p><strong>Birth Year:</strong> {{ character.birth_year }}</p>
+          <p><strong>Gender:</strong> {{ character.gender }}</p>
+          <p>
+            <strong>Homeworld:</strong>
+            <a href="{{ character.homeworld }}" target="_blank">Homeworld</a>
+          </p>
 
-    <div *ngIf="character.films && character.films.length > 0">
-      <strong>Films:</strong>
-      <ul class="list-disc ml-4">
+          <div *ngIf="character.vehicles && character.vehicles.length > 0">
+            <strong>Vehicles:</strong>
+            <ul class="list-disc ml-4">
+              <li *ngFor="let vehicle of character.vehicles">
+                <a href="{{ vehicle }}" target="_blank" class="text-blue-500">{{
+                  vehicle
+                }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="character.starships && character.starships.length > 0">
+            <strong>Starships:</strong>
+            <ul class="list-disc ml-4">
+              <li *ngFor="let starship of character.starships">
+                <a
+                  href="{{ starship }}"
+                  target="_blank"
+                  class="text-blue-500"
+                  >{{ starship }}</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center gap-10 mb-4 items-center">
+    <div class="w-[30px] h-[1px] bg-black"></div>
+    <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+    <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+
+    <div class="w-[30px] h-[1px] bg-black"></div>
+  </div>
+  <div class="bg-gradient-to-r from-gray-800 to-black">
+    <div
+      class="header flex justify-center items-center bg-gradient-to-r from-rose-600 via-cyan-900 to-blue-600 py-1 mb-[30px]"
+    >
+      <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+      <h2 class="block text-xl text-center mx-4 text-black rounded-md">
+        Films
+      </h2>
+      <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+    </div>
+    <div
+      id="films"
+      class="mx-6 flex justify-center"
+      *ngIf="character.films && character.films.length > 0"
+    >
+      <ul class="ml-4 flex gap-8">
         <li *ngFor="let film of character.films">
-          <a href="{{ film }}" target="_blank" class="text-blue-500">{{ film }}</a>
+          <a
+            [routerLink]="['/film', getEntityId(film)]"
+            target="_blank"
+            class="text-blue-500 hover:underline mt-5"
+          >
+            Episode: {{ getEntityId(film) }}
+          </a>
+          <img
+            class="w-40 rounded"
+            [src]="getFilmImageUrl(film, 'films')"
+            alt=""
+          />
         </li>
       </ul>
     </div>
 
-    <div *ngIf="character.vehicles && character.vehicles.length > 0">
-      <strong>Vehicles:</strong>
-      <ul class="list-disc ml-4">
+    <div class="header flex justify-center items-center py-2">
+      <h2
+        *ngIf="character.vehicles && character.vehicles.length > 0"
+        class="block text-xl text-center mx-4 text-black rounded-md mt-[50px] px-10 bg-gradient-to-r from-rose-600 via-cyan-900 to-blue-600"
+      >
+        Related Vehicles
+      </h2>
+    </div>
+    <div
+      id="vehicles"
+      class="mx-6 flex justify-center pb-10"
+      *ngIf="character.vehicles && character.vehicles.length > 0"
+    >
+      <ul class="ml-4 flex gap-8">
         <li *ngFor="let vehicle of character.vehicles">
-          <a href="{{ vehicle }}" target="_blank" class="text-blue-500">{{ vehicle }}</a>
+          <a
+            [routerLink]="['/vehicle', getEntityId(vehicle)]"
+            target="_blank"
+            class="text-blue-500 hover:underline"
+          >
+            Vehicle ID: {{ getEntityId(vehicle) }}
+          </a>
+          <img
+            class="w-40 rounded"
+            [src]="getFilmImageUrl(vehicle, 'vehicles')"
+            alt=""
+          />
         </li>
       </ul>
     </div>
-
-    <div *ngIf="character.starships && character.starships.length > 0">
-      <strong>Starships:</strong>
-      <ul class="list-disc ml-4">
+    <div class="header flex justify-center items-center py-2">
+      <h2
+        *ngIf="character.starships && character.starships.length > 0"
+        class="block text-xl text-center mx-4 text-black rounded-md mt-[50px] px-10 bg-gradient-to-r from-rose-600 via-cyan-900 to-blue-600"
+      >
+        Related Starships
+      </h2>
+    </div>
+    <div
+      id="starships"
+      class="mx-6 flex justify-center pb-10"
+      *ngIf="character.starships && character.starships.length > 0"
+    >
+      <ul class="ml-4 flex gap-8">
         <li *ngFor="let starship of character.starships">
-          <a href="{{ starship }}" target="_blank" class="text-blue-500">{{ starship }}</a>
+          <a
+            [routerLink]="['/starship', getEntityId(starship)]"
+            target="_blank"
+            class="text-blue-500 hover:underline"
+          >
+            Starship ID: {{ getEntityId(starship) }}
+          </a>
+          <img
+            class="w-40 rounded"
+            [src]="getFilmImageUrl(starship, 'starships')"
+            alt=""
+          />
         </li>
       </ul>
     </div>

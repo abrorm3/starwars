@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class CardComponent {
   @Input() entity: any;
   @Input() entityType: string ='';
+film: any;
 
   constructor(private router:Router){}
 
@@ -17,6 +18,6 @@ export class CardComponent {
       return `assets/${this.entityType}/${this.entity.id}.jpg`;
   }
   navigateDetails(){
-    this.router.navigate([`/people/${this.entity.id}`]);
+    this.router.navigate([`/character/${this.entity.id}`]);
   }
 }
