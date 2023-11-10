@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+# Ignore Angular environment files
+src/environments/*.ts
+
 # IDEs and editors
 .idea/
 .project

@@ -1,0 +1,42 @@
+
+<div class="max-w-xs rounded overflow-hidden shadow-lg mx-4 my-6 bg-white">
+  <img class="w-full" [src]="getImagePath()" alt="Character Image">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">{{ character.name }}</div>
+    <p><strong>Height:</strong> {{ character.height }}</p>
+    <p><strong>Mass:</strong> {{ character.mass }}</p>
+    <p><strong>Hair Color:</strong> {{ character.hair_color }}</p>
+    <p><strong>Skin Color:</strong> {{ character.skin_color }}</p>
+    <p><strong>Eye Color:</strong> {{ character.eye_color }}</p>
+    <p><strong>Birth Year:</strong> {{ character.birth_year }}</p>
+    <p><strong>Gender:</strong> {{ character.gender }}</p>
+    <p><strong>Homeworld:</strong> <a href="{{ character.homeworld }}" target="_blank">Homeworld</a></p>
+
+    <div *ngIf="character.films && character.films.length > 0">
+      <strong>Films:</strong>
+      <ul class="list-disc ml-4">
+        <li *ngFor="let film of character.films">
+          <a href="{{ film }}" target="_blank" class="text-blue-500">{{ film }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="character.vehicles && character.vehicles.length > 0">
+      <strong>Vehicles:</strong>
+      <ul class="list-disc ml-4">
+        <li *ngFor="let vehicle of character.vehicles">
+          <a href="{{ vehicle }}" target="_blank" class="text-blue-500">{{ vehicle }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="character.starships && character.starships.length > 0">
+      <strong>Starships:</strong>
+      <ul class="list-disc ml-4">
+        <li *ngFor="let starship of character.starships">
+          <a href="{{ starship }}" target="_blank" class="text-blue-500">{{ starship }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

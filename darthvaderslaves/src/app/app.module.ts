@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { PeopleComponent } from './pages/people/people.component';
 import { FilmsComponent } from './pages/films/films.component';
 import { PlanetsComponent } from './pages/planets/planets.component';
 import { SpeciesComponent } from './pages/species/species.component';
@@ -13,24 +12,27 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainComponent } from './pages/main/main.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { PeopleModule } from './pages/people/people.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PeopleComponent,
     FilmsComponent,
     PlanetsComponent,
     SpeciesComponent,
     VehiclesComponent,
     StarshipsComponent,
     SidebarComponent,
-    MainComponent
+    MainComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     RouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PeopleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
