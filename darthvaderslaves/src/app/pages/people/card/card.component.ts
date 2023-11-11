@@ -20,8 +20,6 @@ export class CardComponent implements OnInit{
   }
 
   getImagePath(): string {
-
-      console.log(`assets/${this.entityType}/${this.adjustedEntityId}.jpg`);
       return `assets/${this.entityType}/${this.adjustedEntityId}.jpg`;
   }
   navigateDetails(){

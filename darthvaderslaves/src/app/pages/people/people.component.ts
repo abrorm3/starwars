@@ -13,25 +13,25 @@ export class PeopleComponent implements OnInit {
   people: Person[] = [];
   currentPage: number=1;
 
-  pageSize = 10; // number of items per page
-  pageIndex = 0; // current page index
-  totalItems = 100; // total number of items
+  pageSize = 10;
+  pageIndex = 1;
+  totalItems = 100;
+  loading: boolean = false;
 
   constructor(private swapiService: SwapiService, private route:ActivatedRoute, private router:Router) {}
 
   ngOnInit() {
-    this.getPageInfo();
-    this.fetchEntity();
-  }
-  getPageInfo(){
-    this.route.params.subscribe((params: Params) => {
-      this.currentPage = +params['page'] || 1;
-      console.log('Current Page:', this.currentPage);
+    this.route.queryParams.subscribe(params => {
+      this.pageIndex = params['page'] ? +params['page']: 1;
+      console.log(this.pageIndex + ' PAAGE INDEX');
+      this.fetchEntity();
     });
   }
   fetchEntity(){
-    this.swapiService.getPeople(this.currentPage).subscribe({
+    this.loading =true;
+    this.swapiService.getPeople(this.pageIndex).subscribe({
       next: (data: any) => {
+        this.loading=false;
         this.people = data.results.map((person: Person, index: number) => ({
           ...person,
           id: index + 1,
@@ -44,16 +44,16 @@ export class PeopleComponent implements OnInit {
       },
     });
   }
-  onPageChange(): void {
-    this.router.navigate([`/characters/${this.currentPage}`])
-    // this.route.params.subscribe((params: Params) => {
-    //   this.currentPage = +params['page'] || 1;
-    // });
-    // // Update the URL with the new page index
-    // this.router.navigate(['/characters'], {
-    //   queryParams: { page: this.pageIndex + 1 }, // Add 1 because page index is zero-based
-    //   queryParamsHandling: 'merge',
-    // });
+  onPageChange(event: any): void {
+    // Update the current page index
+    this.pageIndex = event.pageIndex;
+
+    // Update the URL with the new page index
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: this.pageIndex}, // Add 1 because page index is zero-based
+      queryParamsHandling: 'merge',
+    });
   }
 
 
