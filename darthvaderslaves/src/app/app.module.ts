@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { StarshipsComponent } from './pages/starships/starships.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MainComponent } from './pages/main/main.component';
@@ -18,11 +17,11 @@ import { PlanetsModule } from './pages/planets/planets.module';
 import { SharedModule } from './shared/shared.module';
 import { FilmsModule } from './pages/films/films.module';
 import { SpeciesModule } from './pages/species/species.module';
+import { VehiclesModule } from './pages/vehicles/vehicles.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VehiclesComponent,
     StarshipsComponent,
     SidebarComponent,
     MainComponent,
@@ -40,7 +39,8 @@ import { SpeciesModule } from './pages/species/species.module';
     PlanetsModule,
     SharedModule,
     FilmsModule,
-    SpeciesModule
+    SpeciesModule,
+    VehiclesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,115 @@
+<div
+  *ngIf="!vehicles"
+  class="h-screen flex flex-wrap justify-center items-center"
+>
+  <mat-spinner></mat-spinner>
+</div>
+
+<div id="details-bg" *ngIf="vehicles">
+  <div class="flex items-center space-x-4 ml-[100px] pt-[40px]">
+    <a
+      [routerLink]="['/main']"
+      routerLinkActive="router-link-active"
+      class="text-blue-500 hover:underline"
+    >Main</a
+    >
+    <span class="text-gray-500 mx-4">/</span>
+    <a
+      (click)="navigateToVehicles()"
+      class="text-blue-500 hover:underline cursor-pointer"
+    >Vehicles</a
+    >
+    <span class="text-gray-500 mx-4">/</span>
+    <p class="text-gray-700">{{ vehicles.name }}</p>
+  </div>
+
+  <div class="flex justify-center items-center">
+    <div class="w-96 h-96 flex justify-center items-center" *ngIf="!vehicles">
+      <mat-spinner class="spinner" *ngIf="!vehicles"></mat-spinner>
+    </div>
+
+    <div
+      class="flex w-max rounded shadow-lg mx-4 my-6 bg-white justify-center items-center"
+      *ngIf="vehicles"
+    >
+      <img class="w-76" [src]="getImagePath()" alt="Vehicle Image" />
+
+      <div class="w-72">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ vehicles.name }}</div>
+          <p><strong>Model:</strong> {{ vehicles.model }}</p>
+          <p><strong>Manufacturer:</strong> {{ vehicles.manufacturer }}</p>
+          <p><strong>Cost in Credits:</strong> {{ vehicles.cost_in_credits }}</p>
+          <p><strong>Length:</strong> {{ vehicles.length }}</p>
+          <p><strong>Max Atmosphering Speed:</strong> {{ vehicles.max_atmosphering_speed }}</p>
+          <p><strong>Crew:</strong> {{ vehicles.crew }}</p>
+          <p><strong>Passengers:</strong> {{ vehicles.passengers }}</p>
+          <p><strong>Cargo Capacity:</strong> {{ vehicles.cargo_capacity }}</p>
+          <p><strong>Consumables:</strong> {{ vehicles.consumables }}</p>
+          <p><strong>Vehicle Class:</strong> {{ vehicles.vehicle_class }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gradient-to-r from-gray-800 to-black">
+    <div *ngIf="vehicles.pilots && vehicles.pilots.length > 0"
+      class="header flex justify-center items-center bg-gradient-to-r from-rose-600 via-cyan-900 to-blue-600 py-1 mb-[30px]"
+    >
+      <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+      <h2 class="block text-xl text-center mx-4 text-black rounded-md">
+        Pilots
+      </h2>
+      <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+    </div>
+    <div
+      id="pilots"
+      class="mx-6 flex justify-center"
+      *ngIf="vehicles.pilots && vehicles.pilots.length > 0"
+    >
+      <ul class="ml-4 flex gap-8">
+        <li *ngFor="let pilot of vehicles.pilots">
+          <a
+            [routerLink]="['/pilot', getEntityId(pilot)]"
+            target="_blank"
+            class="text-blue-500 hover:underline mt-5"
+          >
+            Pilot: {{ getEntityId(pilot) }}
+          </a>
+          <img
+            class="w-40 rounded"
+            [src]="getImageUrl(pilot, 'pilots')"
+            alt=""
+          />
+        </li>
+      </ul>
+    </div>
+
+    <div class="header flex justify-center items-center py-2">
+      <h2
+        *ngIf="vehicles.films && vehicles.films.length > 0"
+        class="block text-xl text-center mx-4 text-black rounded-md mt-[50px] px-10 bg-gradient-to-r from-rose-600 via-cyan-900 to-blue-600"
+      >
+        Related Films
+      </h2>
+    </div>
+    <div
+      id="films"
+      class="mx-6 flex justify-center pb-10"
+      *ngIf="vehicles.films && vehicles.films.length > 0"
+    >
+      <ul class="ml-4 flex gap-8">
+        <li *ngFor="let film of vehicles.films">
+          <a
+            [routerLink]="['/film', getEntityId(film)]"
+            target="_blank"
+            class="text-blue-500 hover:underline"
+          >
+            Film ID: {{ getEntityId(film) }}
+          </a>
+          <img class="w-40 rounded" [src]="getImageUrl(film, 'films')" alt="" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
