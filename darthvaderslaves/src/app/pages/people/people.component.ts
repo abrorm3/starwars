@@ -24,7 +24,7 @@ export class PeopleComponent implements OnInit {
   }
   fetchEntity(){
     this.loading =true;
-    this.swapiService.getPeople(this.pageIndex).subscribe({
+    this.swapiService.getEntityData(this.pageIndex, 'people').subscribe({
       next: (data: any) => {
         this.loading=false;
         this.people = data.results.map((person: Person, index: number) => ({

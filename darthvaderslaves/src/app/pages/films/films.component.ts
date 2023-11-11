@@ -24,7 +24,7 @@ export class FilmsComponent {
   }
   fetchEntity(){
     this.loading =true;
-    this.swapiService.getFilms(this.pageIndex).subscribe({
+    this.swapiService.getEntityData(this.pageIndex, 'films').subscribe({
       next: (data: any) => {
         this.loading=false;
         this.films = data.results.map((film: Film, index: number) => ({

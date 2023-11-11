@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { SpeciesComponent } from './pages/species/species.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { StarshipsComponent } from './pages/starships/starships.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -18,11 +17,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { PlanetsModule } from './pages/planets/planets.module';
 import { SharedModule } from './shared/shared.module';
 import { FilmsModule } from './pages/films/films.module';
+import { SpeciesModule } from './pages/species/species.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpeciesComponent,
     VehiclesComponent,
     StarshipsComponent,
     SidebarComponent,
@@ -40,7 +39,8 @@ import { FilmsModule } from './pages/films/films.module';
     MatPaginatorModule,
     PlanetsModule,
     SharedModule,
-    FilmsModule
+    FilmsModule,
+    SpeciesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

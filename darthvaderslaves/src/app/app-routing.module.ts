@@ -7,6 +7,8 @@ import { PlanetsComponent } from './pages/planets/planets.component';
 import { PlanetDetailsComponent } from './pages/planets/planet-details/planet-details.component';
 import { FilmsComponent } from './pages/films/films.component';
 import { FilmDetailsComponent } from './pages/films/film-details/film-details.component';
+import { SpeciesComponent } from './pages/species/species.component';
+import { SpeciesDetailsComponent } from './pages/species/species-details/species-details.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'main',pathMatch: 'full'},
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path:'planets', component:PlanetsComponent},
   {path:'planet/:id', component:PlanetDetailsComponent},
   {path:'films', component:FilmsComponent},
-  {path:'film/:id', component:FilmDetailsComponent}
+  {path:'film/:id', component:FilmDetailsComponent},
+  {path:'species', component:SpeciesComponent},
+  {path:'specie/:id', component:SpeciesDetailsComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -27,16 +27,8 @@ export class SwapiService {
   getDataById<T>(id:number, entity: string){
     return this.http.get<T>(`${this.apiUrl}/${entity}/${id}`);
   }
-  getPeople(pageNum:number):Observable<Person> {
+  getEntityData<T>(pageNum:number, entity:string):Observable<T>{
     const params = new HttpParams().set('page', pageNum);
-    return this.http.get<Person>(`${this.apiUrl}/people`,{params});
-  }
-  getPlanets(pageNum:number):Observable<Planet> {
-    const params = new HttpParams().set('page', pageNum);
-    return this.http.get<Planet>(`${this.apiUrl}/planets`,{params});
-  }
-  getFilms(pageNum:number):Observable<Film> {
-    const params = new HttpParams().set('page', pageNum);
-    return this.http.get<Film>(`${this.apiUrl}/films`,{params});
+    return this.http.get<T>(`${this.apiUrl}/${entity}`,{params});
   }
 }

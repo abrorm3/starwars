@@ -23,7 +23,7 @@ export class PlanetsComponent {
   }
   fetchEntity(){
     this.loading =true;
-    this.swapiService.getPlanets(this.pageIndex).subscribe({
+    this.swapiService.getEntityData(this.pageIndex, 'planets').subscribe({
       next: (data: any) => {
         this.loading=false;
         this.planets = data.results.map((person:  Planet, index: number) => ({
