@@ -23,7 +23,6 @@ export class PeopleComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.pageIndex = params['page'] ? +params['page']: 1;
-      console.log(this.pageIndex + ' PAAGE INDEX');
       this.fetchEntity();
     });
   }

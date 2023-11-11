@@ -1,1 +1,26 @@
-<p>planets works!</p>
+<div
+  *ngIf="loading"
+  class="h-screen flex flex-wrap justify-center items-center"
+>
+  <mat-spinner></mat-spinner>
+</div>
+<div class="bg-container" *ngIf="!loading">
+
+
+  <div class="flex items-center space-x-4 ml-[100px] pt-[40px]">
+    <a
+      [routerLink]="['/main']"
+      routerLinkActive="router-link-active"
+      class="text-blue-500 hover:underline"
+      >Main</a
+    >
+    <span class="text-gray-500 mx-4">/</span>
+    <p class="text-gray-200">Characters</p>
+  </div>
+  <div class="flex flex-wrap justify-center items-center">
+    <mat-spinner *ngIf="planets.length == 0"></mat-spinner>
+    <div *ngFor="let planet of planets">
+      <app-card [entity]="planet" entityType="planets"></app-card>
+    </div>
+  </div>
+</div>

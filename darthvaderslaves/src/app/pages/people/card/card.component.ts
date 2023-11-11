@@ -19,14 +19,11 @@ export class CardComponent implements OnInit{
 
     this.route.queryParams.subscribe(params => {
       this.pageIndex = params['page'] ? +params['page']: 1;
-      console.log(this.pageIndex + ' Ppp CARD');
       this.calcIdPage();
     });
   }
   calcIdPage(){
     this.charId = this.entity.id + (this.pageIndex - 1) * 10;
-    console.log(this.charId);
-
   }
 
   getImagePath(): string {
