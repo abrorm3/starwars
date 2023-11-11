@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Person } from 'src/app/shared/interfaces/person.model';
+import { Component } from '@angular/core';
+import { Film } from 'src/app/shared/interfaces/films.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwapiService } from 'src/app/shared/swapi.service';
 
 @Component({
-  selector: 'app-card-details',
-  templateUrl: './card-details.component.html',
-  styleUrls: ['./card-details.component.scss']
+  selector: 'app-film-details',
+  templateUrl: './film-details.component.html',
+  styleUrls: ['./film-details.component.scss']
 })
-export class CardDetailsComponent implements OnInit{
-  character!: Person;
+export class FilmDetailsComponent {
+  film!: Film;
   id!: number;
 
   defaultImageSrc = 'assets/icons/light-saber.png';
@@ -17,28 +17,26 @@ export class CardDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.attachRouterId();
-    this.swapiService.getDataById<Person>(this.id, 'planets').subscribe((data)=>{
-      this.character = data;
+    this.swapiService.getDataById<Film>(this.id, 'films').subscribe((data)=>{
+      this.film = data;
     })
 
   }
   attachRouterId(){
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      console.log(this.id);
-
     });
   }
   getImagePath(): string {
-    return `assets/characters/${this.id}.jpg`;
+    return `assets/films/${this.id}.jpg`;
   }
   getEntityId(entityId: string): string {
     const id = this.extractIdFromUrl(entityId);
     return `${id}`;
   }
 
-  getFilmImageUrl(filmUrl: string, entity:string): string {
-    const id = this.extractIdFromUrl(filmUrl);
+  getImageUrl(entityUrl: string, entity:string): string {
+    const id = this.extractIdFromUrl(entityUrl);
     return `assets/${entity}/${id}.jpg`;
   }
 
@@ -46,9 +44,9 @@ export class CardDetailsComponent implements OnInit{
     const parts = url.split('/');
     return +parts[parts.length - 2];
   }
-  navigateToCharacters(){
+  navigateToFilms(){
     const pageNumber = this.calculatePageNumber(this.id);
-    this.router.navigate(['/characters'], { queryParams: { page: pageNumber } })
+    this.router.navigate(['/films'], { queryParams: { page: pageNumber } })
   }
   calculatePageNumber(id: number): number {
     return Math.floor((id - 1) / 10) + 1;
@@ -57,4 +55,3 @@ export class CardDetailsComponent implements OnInit{
     event.target.src = this.defaultImageSrc;
   }
 }
-

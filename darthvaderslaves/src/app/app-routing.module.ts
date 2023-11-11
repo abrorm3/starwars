@@ -5,6 +5,8 @@ import { PeopleComponent } from './pages/people/people.component';
 import { CardDetailsComponent } from './pages/people/card-details/card-details.component';
 import { PlanetsComponent } from './pages/planets/planets.component';
 import { PlanetDetailsComponent } from './pages/planets/planet-details/planet-details.component';
+import { FilmsComponent } from './pages/films/films.component';
+import { FilmDetailsComponent } from './pages/films/film-details/film-details.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'main',pathMatch: 'full'},
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path:'characters', component:PeopleComponent},
   {path:'character/:id', component:CardDetailsComponent},
   {path:'planets', component:PlanetsComponent},
-  {path:'planet/:id', component:PlanetDetailsComponent}
+  {path:'planet/:id', component:PlanetDetailsComponent},
+  {path:'films', component:FilmsComponent},
+  {path:'film/:id', component:FilmDetailsComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

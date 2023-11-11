@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PeopleService } from '../../pages/people/people.service';
 
 @Component({
   selector: 'app-card',
@@ -12,7 +11,7 @@ export class CardComponent implements OnInit{
   @Input() entityType: string ='';
   pageIndex:number = 1;
   charId:number =0;
-  constructor(private router:Router, private route:ActivatedRoute, private peopleService:PeopleService){}
+  constructor(private router:Router, private route:ActivatedRoute){}
 
   ngOnInit(): void {
 

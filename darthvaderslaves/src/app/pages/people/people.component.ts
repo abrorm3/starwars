@@ -11,11 +11,7 @@ import { SwapiService } from 'src/app/shared/swapi.service';
 })
 export class PeopleComponent implements OnInit {
   people: Person[] = [];
-  currentPage: number=1;
-
-  pageSize = 10;
   pageIndex = 1;
-  totalItems = 100;
   loading: boolean = false;
 
   constructor(private swapiService: SwapiService, private route:ActivatedRoute, private router:Router) {}
@@ -44,17 +40,13 @@ export class PeopleComponent implements OnInit {
     });
   }
   onPageChange(event: any): void {
-    // Update the current page index
     this.pageIndex = event.pageIndex;
 
-    // Update the URL with the new page index
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { page: this.pageIndex}, // Add 1 because page index is zero-based
+      queryParams: { page: this.pageIndex},
       queryParamsHandling: 'merge',
     });
   }
-
-
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Planet } from 'src/app/shared/interfaces/planet.model';
 import { PlanetsService } from '../planets.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SwapiService } from 'src/app/shared/swapi.service';
 
 @Component({
   selector: 'app-planet-details',
@@ -13,24 +14,18 @@ export class PlanetDetailsComponent {
   id!: number;
 
   defaultImageSrc = 'assets/icons/light-saber.png';
-  constructor(private planetService:PlanetsService, private route: ActivatedRoute, private router:Router){}
+  constructor(private swapiService:SwapiService, private route: ActivatedRoute, private router:Router){}
 
   ngOnInit(): void {
     this.attachRouterId();
-    this.planetService.getDataById(this.id).subscribe((data)=>{
+    this.swapiService.getDataById<Planet>(this.id, 'planets').subscribe((data)=>{
       this.planet = data;
-      console.log(this.planet);
-
     })
 
   }
   attachRouterId(){
-    // this.planetService.getCurrentPage()
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      console.log(this.id);
-
-      // this.planetService.getplanetId(id);
     });
   }
   getImagePath(): string {
@@ -41,8 +36,8 @@ export class PlanetDetailsComponent {
     return `${id}`;
   }
 
-  getImageUrl(residentUrl: string, entity:string): string {
-    const id = this.extractIdFromUrl(residentUrl);
+  getImageUrl(entityUrl: string, entity:string): string {
+    const id = this.extractIdFromUrl(entityUrl);
     return `assets/${entity}/${id}.jpg`;
   }
 

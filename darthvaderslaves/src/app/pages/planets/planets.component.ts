@@ -10,11 +10,7 @@ import { SwapiService } from 'src/app/shared/swapi.service';
 })
 export class PlanetsComponent {
   planets: Planet[] = [];
-  currentPage: number=1;
-
-  pageSize = 10;
   pageIndex = 1;
-  totalItems = 100;
   loading: boolean = false;
 
   constructor(private swapiService: SwapiService, private route:ActivatedRoute, private router:Router) {}
@@ -35,7 +31,6 @@ export class PlanetsComponent {
           id: index + 1,
         }));
 
-        console.log(this.planets);
       },
       error: (error) => {
         console.error('Error fetching planet data:', error);

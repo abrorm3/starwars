@@ -1,0 +1,90 @@
+<!-- film-details.component.html -->
+
+<div *ngIf="!film" class="h-screen flex flex-wrap justify-center items-center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div id="details-bg" *ngIf="film">
+  <div class="flex items-center space-x-4 ml-[100px] pt-[40px]">
+    <a [routerLink]="['/main']" routerLinkActive="router-link-active" class="text-blue-500 hover:underline">Main</a>
+    <span class="text-gray-500 mx-4">/</span>
+    <a (click)="navigateToFilms()" class="text-blue-500 hover:underline cursor-pointer">Films</a>
+    <span class="text-gray-500 mx-4">/</span>
+    <p class="text-gray-700">{{ film.title }}</p>
+  </div>
+
+  <div class="flex justify-center items-center">
+    <div class="w-96 h-96 flex justify-center items-center" *ngIf="!film">
+      <mat-spinner class="spinner" *ngIf="!film"></mat-spinner>
+    </div>
+
+    <div class="flex w-max rounded shadow-lg mx-4 my-6 bg-white justify-center items-center" *ngIf="film">
+      <!-- Adjust image path or properties based on your Film data -->
+      <img class="w-76" [src]="getImagePath()" alt="Film Image" />
+
+      <div class="w-72">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ film.title }}</div>
+          <p><strong>Episode ID:</strong> {{ film.episode_id }}</p>
+          <p><strong>Director:</strong> {{ film.director }}</p>
+          <p><strong>Producer:</strong> {{ film.producer }}</p>
+          <p><strong>Release Date:</strong> {{ film.release_date }}</p>
+
+          <!-- Additional properties of the Film can be displayed here -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gradient-to-r from-gray-800 to-black">
+    <div *ngIf="film.characters && film.characters.length > 0" class="header flex justify-center items-center bg-gradient-to-r from-rose-600 via-cyan-900 to-blue-600 py-1 mb-[30px]">
+      <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+      <h2 class="block text-xl text-center mx-4 text-black rounded-md">Characters</h2>
+      <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
+    </div>
+    <div id="characters" class="mx-6 flex justify-center mb-5" *ngIf="film.characters && film.characters.length > 0">
+      <ul class="flex justify-center flex-wrap gap-8">
+        <li *ngFor="let character of film.characters">
+          <a [routerLink]="['/character', getEntityId(character)]" target="_blank" class="text-blue-500 hover:underline mt-5">
+            Character: {{ getEntityId(character) }}
+          </a>
+          <img class="w-40 rounded" [src]="getImageUrl(character, 'characters')" alt="" />
+        </li>
+      </ul>
+    </div>
+
+    <div class="header flex justify-center items-center py-2">
+      <h2
+        *ngIf="film.planets && film.planets.length > 0"
+        class="block text-xl text-center mx-4 text-black rounded-md mt-[50px] px-10 bg-gradient-to-r from-rose-600 via-cyan-900 to-blue-600"
+      >
+        Planets
+      </h2>
+    </div>
+    <div
+      id="vehicles"
+      class="mx-6 flex justify-center pb-10"
+      *ngIf="film.planets && film.planets.length > 0"
+    >
+      <ul class="ml-4 flex gap-8">
+        <li *ngFor="let planet of film.planets">
+          <a
+            [routerLink]="['/planet', getEntityId(planet)]"
+            target="_blank"
+            class="text-blue-500 hover:underline"
+          >
+            Planet ID: {{ getEntityId(planet) }}
+          </a>
+          <img
+            class="w-40 rounded"
+            [src]="getImageUrl(planet, 'planets')"
+            alt="planet"
+          />
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+</div>
