@@ -13,6 +13,12 @@
       <img src="assets/icons/light-saber.png" width="16px" alt="saber icon">
       <p>Menu</p>
     </button>
+    <mat-paginator class="paginator"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [length]="totalItems"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PeopleModule } from './pages/people/people.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
     PeopleModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
