@@ -5,7 +5,7 @@ import { CardComponent } from './card/card.component';
 import { PeopleComponent } from './people.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
-import { AppModule } from 'src/app/app.module';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { AppModule } from 'src/app/app.module';
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
-    RouterModule
+    RouterModule,
+    MatPaginatorModule
   ]
 })
 export class PeopleModule { }

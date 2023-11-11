@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Person } from 'src/app/shared/interfaces/person.model';
 import { PeopleService } from '../../people.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-details',
@@ -11,7 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CardDetailsComponent implements OnInit{
   character!: Person;
   id!: number;
-  constructor(private peopleService:PeopleService, private route: ActivatedRoute){}
+
+  defaultImageSrc = 'assets/icons/light-saber.png';
+  constructor(private peopleService:PeopleService, private route: ActivatedRoute, private router:Router){}
 
   ngOnInit(): void {
     this.attachRouterId();
@@ -47,6 +49,18 @@ export class CardDetailsComponent implements OnInit{
   private extractIdFromUrl(url: string): number {
     const parts = url.split('/');
     return +parts[parts.length - 2];
+  }
+  navigateToCharacters(){
+    // return this.calculatePageNumber(this.id);
+    this.router.navigate([`/characters/${this.calculatePageNumber(this.id)}`])
+  }
+  calculatePageNumber(id: number): number {
+    const entitiesPerPage = 10;
+    const pageNumber = Math.ceil(id / entitiesPerPage);
+    return Math.max(1, pageNumber);
+  }
+  setDefaultImage(event:any){
+    event.target.src = this.defaultImageSrc;
   }
 }
 

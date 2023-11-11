@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { PeopleModule } from './pages/people/people.module';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { PeopleModule } from './pages/people/people.module';
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
-    PeopleModule
+    PeopleModule,
+    MatSidenavModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

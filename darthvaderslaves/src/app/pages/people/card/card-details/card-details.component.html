@@ -2,7 +2,7 @@
   <mat-spinner ></mat-spinner>
 </div>
 <div id="details-bg" *ngIf="character">
-  <div class="flex items-center space-x-4">
+  <div class="flex items-center space-x-4 ml-[100px] pt-[40px]">
     <a
       [routerLink]="['/main']"
       routerLinkActive="router-link-active"
@@ -10,7 +10,7 @@
       >Main</a
     >
     <span class="text-gray-500 mx-4">/</span>
-    <a [routerLink]="['/characters']" class="text-blue-500 hover:underline"
+    <a (click)="navigateToCharacters()" class="text-blue-500 hover:underline cursor-pointer"
       >Characters</a
     >
     <span class="text-gray-500 mx-4">/</span>
@@ -134,7 +134,7 @@
           <img
             class="w-40 rounded"
             [src]="getFilmImageUrl(vehicle, 'vehicles')"
-            alt=""
+            alt="vehicle"
           />
         </li>
       </ul>

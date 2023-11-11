@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="bg-dark">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" style="width: 200px">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="relative flex">
+    <button
+      mat-button
+      (click)="sidenav.toggle()"
+      class="fixed flex gap-1 menuBtn text-xs hover:text-white r-5 px-4 py-1 bg-dark-soft rounded-r-3xl bg-blue-600 hover:bg-gradient-to-br from-black via-red-700 to-black"
+
+    >
+      <img src="assets/icons/light-saber.png" width="16px" alt="saber icon">
+      <p>Menu</p>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

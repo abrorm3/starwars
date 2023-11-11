@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Person } from 'src/app/shared/interfaces/person.model';
 import { SwapiService } from 'src/app/shared/swapi.service';
 
@@ -12,7 +13,11 @@ export class PeopleComponent implements OnInit {
   people: Person[] = [];
   currentPage: number=1;
 
-  constructor(private swapiService: SwapiService, private route:ActivatedRoute) {}
+  pageSize = 10; // number of items per page
+  pageIndex = 0; // current page index
+  totalItems = 100; // total number of items
+
+  constructor(private swapiService: SwapiService, private route:ActivatedRoute, private router:Router) {}
 
   ngOnInit() {
     this.getPageInfo();
@@ -39,5 +44,18 @@ export class PeopleComponent implements OnInit {
       },
     });
   }
+  onPageChange(): void {
+    this.router.navigate([`/characters/${this.currentPage}`])
+    // this.route.params.subscribe((params: Params) => {
+    //   this.currentPage = +params['page'] || 1;
+    // });
+    // // Update the URL with the new page index
+    // this.router.navigate(['/characters'], {
+    //   queryParams: { page: this.pageIndex + 1 }, // Add 1 because page index is zero-based
+    //   queryParamsHandling: 'merge',
+    // });
+  }
+
+
 
 }

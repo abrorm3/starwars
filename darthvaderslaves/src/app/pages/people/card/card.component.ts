@@ -11,19 +11,20 @@ export class CardComponent implements OnInit{
   @Input() entity: any;
   @Input() entityType: string ='';
   @Input() currPage:number=1;
+  adjustedEntityId!: number;
 
   constructor(private router:Router, private route:ActivatedRoute, private peopleService:PeopleService){}
 
   ngOnInit(): void {
-
+    this.adjustedEntityId = this.entity.id + (this.currPage - 1) * 10;
   }
 
   getImagePath(): string {
-    const adjustedEntityId = this.entity.id + (this.currPage - 1) * 10;
-      console.log(`assets/${this.entityType}/${adjustedEntityId}.jpg`);
-      return `assets/${this.entityType}/${adjustedEntityId}.jpg`;
+
+      console.log(`assets/${this.entityType}/${this.adjustedEntityId}.jpg`);
+      return `assets/${this.entityType}/${this.adjustedEntityId}.jpg`;
   }
   navigateDetails(){
-    this.router.navigate([`/character/${this.entity.id}`]);
+    this.router.navigate([`/character/${this.adjustedEntityId}`]);
   }
 }
