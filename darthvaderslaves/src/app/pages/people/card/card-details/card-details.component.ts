@@ -51,13 +51,11 @@ export class CardDetailsComponent implements OnInit{
     return +parts[parts.length - 2];
   }
   navigateToCharacters(){
-    // return this.calculatePageNumber(this.id);
-    this.router.navigate([`/characters/${this.calculatePageNumber(this.id)}`])
+    const pageNumber = this.calculatePageNumber(this.id);
+    this.router.navigate(['/characters'], { queryParams: { page: pageNumber } })
   }
   calculatePageNumber(id: number): number {
-    const entitiesPerPage = 10;
-    const pageNumber = Math.ceil(id / entitiesPerPage);
-    return Math.max(1, pageNumber);
+    return Math.floor((id - 1) / 10) + 1;
   }
   setDefaultImage(event:any){
     event.target.src = this.defaultImageSrc;
