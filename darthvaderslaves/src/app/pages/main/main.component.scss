@@ -1,0 +1,17 @@
+#main-bg{
+  background-image: url('/assets/images/main-bg.jpg');
+  background-size: cover;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-in-out;
+}

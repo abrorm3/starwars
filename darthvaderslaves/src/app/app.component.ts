@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,21 @@ export class AppComponent {
   pageIndex = 0;
   totalItems = 100;
 
-  constructor(private router:Router, private route:ActivatedRoute){}
+  routeMain:boolean = false;
+
+  constructor(private router:Router, private route:ActivatedRoute){
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const currentRoute = this.router.routerState.root;
+        if (currentRoute.firstChild?.routeConfig?.path === 'main') {
+          this.routeMain = true;
+          console.log(this.routeMain);
+        }else{
+          this.routeMain=false;
+        }
+      }
+    });
+  }
 
   onPageChange(event: any): void {
     // Update the current page index
@@ -26,5 +40,4 @@ export class AppComponent {
       queryParamsHandling: 'merge',
     });
   }
-
 }
