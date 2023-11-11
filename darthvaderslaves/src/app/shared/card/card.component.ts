@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PeopleService } from '../people.service';
+import { PeopleService } from '../../pages/people/people.service';
 
 @Component({
   selector: 'app-card',
@@ -30,6 +30,12 @@ export class CardComponent implements OnInit{
       return `assets/${this.entityType}/${this.charId}.jpg`;
   }
   navigateDetails(){
-    this.router.navigate([`/character/${this.charId}`]);
+    console.log( this.router.navigate([`/${this.entityType}/${this.charId}`]));
+    console.log(this.entityType);
+    console.log(this.charId);
+
+
+    const modifiedEntityType = this.entityType.slice(0, -1);
+    this.router.navigate([`/${modifiedEntityType}/${this.charId}`]);
   }
 }

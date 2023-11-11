@@ -1,5 +1,8 @@
-<div *ngIf="!character" class="h-screen flex flex-wrap justify-center items-center">
-  <mat-spinner ></mat-spinner>
+<div
+  *ngIf="!character"
+  class="h-screen flex flex-wrap justify-center items-center"
+>
+  <mat-spinner></mat-spinner>
 </div>
 <div id="details-bg" *ngIf="character">
   <div class="flex items-center space-x-4 ml-[100px] pt-[40px]">
@@ -10,7 +13,9 @@
       >Main</a
     >
     <span class="text-gray-500 mx-4">/</span>
-    <a (click)="navigateToCharacters()" class="text-blue-500 hover:underline cursor-pointer"
+    <a
+      (click)="navigateToCharacters()"
+      class="text-blue-500 hover:underline cursor-pointer"
       >Characters</a
     >
     <span class="text-gray-500 mx-4">/</span>
@@ -40,41 +45,9 @@
             <strong>Homeworld:</strong>
             <a href="{{ character.homeworld }}" target="_blank">Homeworld</a>
           </p>
-
-          <div *ngIf="character.vehicles && character.vehicles.length > 0">
-            <strong>Vehicles:</strong>
-            <ul class="list-disc ml-4">
-              <li *ngFor="let vehicle of character.vehicles">
-                <a href="{{ vehicle }}" target="_blank" class="text-blue-500">{{
-                  vehicle
-                }}</a>
-              </li>
-            </ul>
-          </div>
-
-          <div *ngIf="character.starships && character.starships.length > 0">
-            <strong>Starships:</strong>
-            <ul class="list-disc ml-4">
-              <li *ngFor="let starship of character.starships">
-                <a
-                  href="{{ starship }}"
-                  target="_blank"
-                  class="text-blue-500"
-                  >{{ starship }}</a
-                >
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="flex justify-center gap-10 mb-4 items-center">
-    <div class="w-[30px] h-[1px] bg-black"></div>
-    <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
-    <img width="30px" src="assets/icons/light-saber.png" alt="light-saber" />
-
-    <div class="w-[30px] h-[1px] bg-black"></div>
   </div>
   <div class="bg-gradient-to-r from-gray-800 to-black">
     <div

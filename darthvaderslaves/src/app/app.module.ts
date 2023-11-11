@@ -17,6 +17,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PlanetsModule } from './pages/planets/planets.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,11 @@ import { PlanetsModule } from './pages/planets/planets.module';
     MatSidenavModule,
     MatIconModule,
     MatPaginatorModule,
-    PlanetsModule
+    PlanetsModule,
+    SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
