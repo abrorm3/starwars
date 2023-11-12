@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Person } from './interfaces/person.model';
-import { Planet } from './interfaces/planet.model';
-import { Film } from './interfaces/films.model';
 
 
 @Injectable({
