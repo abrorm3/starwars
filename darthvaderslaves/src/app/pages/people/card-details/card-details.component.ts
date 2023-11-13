@@ -17,7 +17,7 @@ export class CardDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.attachRouterId();
-    this.swapiService.getDataById<Person>(this.id, 'planets').subscribe((data)=>{
+    this.swapiService.getDataById<Person>(this.id, 'people').subscribe((data)=>{
       this.character = data;
     })
 
