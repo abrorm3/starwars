@@ -43,7 +43,7 @@
           <p><strong>Gender:</strong> {{ character.gender }}</p>
           <p>
             <strong>Homeworld:</strong>
-            <a href="{{ character.homeworld }}" target="_blank">Homeworld</a>
+            <a [routerLink]="'/planet/'+homeworldId" target="_blank" class="underline">{{homeworldName}}</a>
           </p>
         </div>
       </div>

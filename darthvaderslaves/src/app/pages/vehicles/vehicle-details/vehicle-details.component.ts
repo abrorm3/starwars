@@ -17,7 +17,7 @@ export class VehicleDetailsComponent {
 
   ngOnInit(): void {
     this.attachRouterId();
-    this.swapiService.getDataById<Vehicle>(this.id, 'planets').subscribe((data)=>{
+    this.swapiService.getDataById<Vehicle>(this.id, 'vehicles').subscribe((data)=>{
       this.vehicles = data;
     })
 
